@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  backend2:
+    depends_on:
+      - db
+    build: ./cardsatelite_backend
+    volumes:
+      - ./cardsatelite_backend/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=8000
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USERNAME=alex
+      - DB_PASSWORD=Nano3110
+      - DB_DATABASE=satelite
+    ports:
+      - 3000:8000
+
+  frontend:
+    build: ./congregacionsatelite
+    volumes:
+      - ./congregacionsatelite/src:/usr/src/app/src
+    command:  sh -c "npm run build && npm run start"
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:3000
+    ports:
+      - 3001:3000
+
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: Nano3110
+      MYSQL_DATABASE: satelite
+      MYSQL_USER: alex
+      MYSQL_PASSWORD: Nano3110
+    volumes:
+      - /cardsatelite_backend/.dbdata:/var/lib/mysql
+    ports:
+      - 3307:3306
