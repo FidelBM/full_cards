@@ -1,3 +1,9 @@
 [submodule "backend-tienda"]
 	path = backend-tienda
 	url = https://github.com/TiendaAndroid/backend-tienda.git
+[submodule "cardsatelite_backend"]
+	path = cardsatelite_backend
+	url = https://github.com/FidelBM/cardsatelite_backend.git
+[submodule "congregacionsatelite"]
+	path = congregacionsatelite
+	url = https://github.com/FidelBM/congregacionsatelite.git
