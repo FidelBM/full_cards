@@ -6,21 +6,18 @@ pipeline {
     }
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()
+            }
+        }
+
         stage('Clone Repository with Submodules') {
             steps {
                 // Clonar el repositorio e inicializar los submódulos
                 sh "git clone --recurse-submodules ${env.GIT_REPO}"
                 dir('full_cards') {
                     sh 'git submodule update --init --recursive'
-                }
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                dir('full_cards') {
-                    // Ejecutar pruebas antes de construir
-                    sh 'docker-compose build'
                 }
             }
         }
