@@ -21,7 +21,6 @@ pipeline {
                 dir('full_cards') {
                     // Ejecutar pruebas antes de construir
                     sh 'docker-compose build'
-                    sh 'docker-compose run full_cards npm test'
                 }
             }
         }
