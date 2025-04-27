@@ -6,8 +6,8 @@ services:
       - db
     build: ./cardsatelite_backend
     volumes:
-      - ./cardsatelite_backend/src:/usr/src/app/src
-    command: npm run start:dev
+      - ./cardsatelite_backend/src:/app/src
+    command: sh -c "npm run build && npm run start"
     environment:
       - PORT=8000
       - DB_HOST=db
